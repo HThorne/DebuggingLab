@@ -8,14 +8,16 @@ for (const button of addButtons) {
   button.addEventListener('click', () => {
     const item = button.id;
 
-    fetch(`/update-cart.json`)
+    fetch(`/update-cart.json?item=${item}`)
       .then((response) => response.json())
       .then((result) => {
         cart = result.cart;
         orderTotal = result.total;
+        displayCart(cart);
+        displayOrderTotal(orderTotal);
       });
-    displayCart(cart);
-    displayOrderTotal(orderTotal);
+    // displayCart(cart);
+    // displayOrderTotal(orderTotal);
   });
 }
 
