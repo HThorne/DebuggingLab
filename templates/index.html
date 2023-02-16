@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coffee Shop Debugging</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Our Coffee Shop!</h1>
+    </header>
+
+    <main>
+      <section id="menu">
+        <h1>Menu</h1>
+
+        <table id="menu-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th colspan="2">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in menu_items %}
+              <tr>
+                <td>{{item}}</td>
+                {% if "Coffee" in item %}
+                  <td>{{"{:.2f}".format(coffee_price)}}</td>
+                {% else %}
+                  <td>{{"{:.2f}".format(tea_price)}}</td>
+                {% endif %}
+                <td>
+                  <button class="add-to-order" id="{{item}}">
+                    Add to cart
+                  </button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+
+      <section id="your-cart">
+        <h1>Your Cart</h1>
+
+        <table id="cart-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+
+          <tbody id="cart-items"></tbody>
+        </table>
+
+        <h2>
+          <div>
+            Total: <span id="cart-total">0.00</span>
+          </div>
+        </h2>
+        <h2>
+          <div>
+            <form action="/">
+              <button type="submit" id="clear-cart">Clear Cart</button>
+            </form>
+          </div>
+          <div>
+            <form action="/">
+              <button type="submit" id="place-order">Place Order</button>
+            </form>
+          </div>
+        </h2>
+      </section>
+
+    </main>
+
+    <script src="/static/coffeeShop.js"></script>
+
+  </body>
+</html>
